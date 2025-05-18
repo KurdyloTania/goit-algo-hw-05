@@ -18,37 +18,23 @@ def input_error(func):
 
 @input_error
 def add_contact(args, contacts):
-    if len(args) != 2:
-        return "Error: The 'add' command requires a name and phone number!!!"
     name, phone = args
-    if not phone.isdigit() or len(phone) != 10:
-        return "Error: You need to enter a 10-digit phone number!!!"
     contacts[name] = phone
     return "Contact added."
 
 @input_error
 def change_contact(args, contacts):
-    if len(args) != 2:
-        return "Error: The 'change' command requires a name and phone number!!!"
     name, phone = args
-    if name not in contacts:
-        return f"Error: Contact '{name}' not found!!!"
     contacts[name] = phone
     return "Contact updated."
 
 @input_error
 def show_phone(args, contacts):
-    if len(args) != 1:
-        return "Error: The 'phone' command only requires a name!!!"
     name = args[0]
-    if name not in contacts:
-        return f"Error: Contact '{name}' not found!!!"
     return contacts[name]
 
 @input_error   
 def show_all(contacts):
-    if not contacts:
-        return "There are no contacts!"
     return "\n".join(f"{name}: {phone}" for name, phone in contacts.items())
 
 
